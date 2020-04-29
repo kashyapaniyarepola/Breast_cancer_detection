@@ -15,7 +15,7 @@ def home():
 def predict():
 
    # float_features = [float(x) for x in request.form.values()]
-    final_features = request.form
+    final_features = dict(request.form)["data"]
     A=pd.DataFrame(final_features)
     A=A.iloc[:].values
     sc = StandardScaler()
