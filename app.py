@@ -14,9 +14,9 @@ def home():
 @app.route('/predict',methods =['POST'])
 def predict():
 
-    float_features = [float(x) for x in request.form.values()]
-    # final_features = [np.array(float_features)]
-    A=pd.DataFrame(float_features)
+   # float_features = [float(x) for x in request.form.values()]
+    final_features = request.form
+    A=pd.DataFrame(final_features)
     A=A.iloc[:].values
     sc = StandardScaler()
     A = sc.fit_transform(A)
@@ -25,7 +25,8 @@ def predict():
         B.append(i[0])
     prediction = model.predict([B])
 
-    return render_template('index.html', prediction_text='Probability is {}'.format(prediction))
+    return jsonify({"response" : prediction})
+    #return render_template('index.html', prediction_text='Probability is {}'.format(prediction))
 
 if __name__ == "__main__":
     app.run(debug=True)
