@@ -26,7 +26,7 @@ def predict():
         B.append(i[0])
     prediction = model.predict([B])
 
-    return jsonify({"response" : pfinal_features})
+    return jsonify({"response" : final_features})
     #return render_template('index.html', prediction_text='Probability is {}'.format(prediction))
 
 if __name__ == "__main__":
